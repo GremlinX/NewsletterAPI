@@ -1,91 +1,135 @@
-# NewsletterAPI (ENGLISH)
+# 📬 NewsletterAPI
 
-## Description
-This project aims to create a newsletter application using the Spring Boot framework. Through the “https://worldnewsapi.com” API, the application will collect news from various sources and present them on a web page. Additionally, the project will serve as a training environment to enhance my Java and Spring Boot skills.
-### Built with
+A bilingual project to collect and display world news using **Spring Boot** and **React**. Built as a learning experience to improve backend and frontend skills, especially in **Java**, **Spring**, and **API integration**.
+
+---
+
+## 🌍 English Version
+
+### 📖 Description
+
+This project is a newsletter-style web application built with Spring Boot and React. It integrates with the [World News API](https://worldnewsapi.com) to fetch current news from various global sources and display them to users. It also serves as a learning platform to improve Java and Spring Boot proficiency.
+
+### 🛠️ Built With
 <img src="https://skillicons.dev/icons?i=react,spring"/>
 
-## Frontend
-### Visual
-* Consists of a section where the user will fill out a form with a free-text field, a selection field for the search source, a button to send the request to the server, and two radio buttons to toggle between displaying all news or paginated view (one at a time).
-### Services
-* Upon project initialization, the loaded news is obtained from the `fakeData.js` file (data retrieved from the API itself, for testing purposes only).
-* There are two ways to request news:
-* With search text and a chosen source.
-* With search text without a specified source.
+---
 
-## Backend
-### Configuration
-* To allow communication between the frontend and backend, CORS was configured in Spring Boot, specifying that HTTP requests from the frontend are accepted.
+### 💻 Frontend
 
-### Controller
-* Consists of three endpoints:
-*`getNews`: Makes a request to the API based on search parameters and any available source.
-*`getNewsWithSource`: Makes a request to the API based on search parameters and the defined source.
-*`obterItem` (unfinished): API responses will be returned in a paginated format. (For testing, try: localhost:8080/api/news/dollar/nytimes.com?page=2)
+#### 🖼️ UI Features
+- A form with:
+  - A free-text input for keyword search.
+  - A dropdown to select a specific news source.
+  - A submit button.
+  - Radio buttons to toggle between "All News" and "Paginated View" (one article per page).
 
-### DTO
-* `NewsItemDTO: Contains some properties from the API’s JSON response.
-* `NewsPropertiesDTO`: (to be implemented)
+#### ⚙️ Services
+- On project startup, news data is loaded from `fakeData.js` (mock API data for development/testing).
+- Two options for requesting news:
+  - With search text and a selected source.
+  - With search text only.
 
-### Services
-* Essential services to make the web application possible. Utilizes functions to convert data, make requests, and construct the API URL.
+---
 
-## To-do:
-### Features:
-* Save specific news items.
+### 🧩 Backend
 
-### Bug fixes:
-* Pagination should not retrieve all data at once; it should send data only when the user performs the page change action. (Performance)
+#### 🔧 Configuration
+- CORS is configured to allow communication between frontend and backend.
 
-### Miscellaneous:
-* Improve code structure and reduce redundancies.
-* Adjust CSS.
-* Ensure accessibility (NVDA)
+#### 🌐 Controllers
+- `getNews`: Fetches news using search terms with any available source.
+- `getNewsWithSource`: Fetches news using both search terms and a specific source.
+- `obterItem` (in progress): Enables paginated API responses.  
+  _Example: `localhost:8080/api/news/dollar/nytimes.com?page=2`_
 
-# NewsletterAPI (PORTUGUÊS - BR)
+#### 📦 DTOs
+- `NewsItemDTO`: Maps relevant fields from the API's JSON response.
+- `NewsPropertiesDTO`: *(To be implemented)*
 
-## Description
-Este projeto tem como objetivo criar uma aplicação de newsletter usando o framework Spring Boot. Através da API "https://worldnewsapi.com", a aplicação coletará notícias de várias fontes e as apresentará em uma página da web. Além disso, o projeto servirá como um ambiente de treinamento para aprimorar minhas habilidades em Java e Spring Boot.
+#### 🛎️ Services
+Handles:
+- Request construction.
+- Data conversion.
+- External API calls.
 
-### Built with
+---
+
+### ✅ To-do
+
+#### ✨ Features
+- Allow users to save specific news items.
+
+#### 🐞 Bug Fixes
+- Improve pagination so data is fetched only when the page is changed (performance optimization).
+
+#### 🧹 Miscellaneous
+- Refactor and clean up code structure.
+- Improve CSS styling.
+- Enhance accessibility (e.g., NVDA screen reader support).
+
+---
+
+## 🇧🇷 Versão em Português
+
+### 📖 Descrição
+
+Este projeto é uma aplicação estilo newsletter desenvolvida com Spring Boot e React. Ela se integra com a [World News API](https://worldnewsapi.com) para buscar notícias atuais de várias fontes do mundo e apresentá-las aos usuários. Também serve como um ambiente de aprendizado para aprimorar as habilidades em Java e Spring Boot.
+
+### 🛠️ Feito com
 <img src="https://skillicons.dev/icons?i=react,spring"/>
 
-## Frontend
-### Visual
-* Consiste de uma seção onde o usuário preencherá um formulario de um campo livre, um campo de seleção da fonte de pesquisa, um botão para enviar a requisição para o servidor e 2 botões tipo radio para que o layout mostre todas as notícias ou paginada (exibindo uma por vez).
-### Services
-* Ao iniciar o projeto, as notícias carregadas são obitdas da `fakeData.js` (Dados obtidos da própria API / Propósito de teste apenas).
-* Há 2 formas de solicitar notícias:
-  * Com texto de pesquisa e com fonte escolhida.
-  * Com texto de pesquisa e sem fonte escolhida.
+---
 
-## Backend
-### Config
-* Para permitir a comunicação entre frontend e backend, foi necessário configurar o CORS no springboot, informando que será recebido requisições HTTP do frontend.
+### 💻 Frontend
 
-### Controller
-* Consiste de 3 caminhos
-    * `getNews` fará solicitação para API com base no que for solicitado para pesquisa via parâmetro e utilizando qualquer fonte disponível.
-    * `getNewsWithSource` fará solicitação para API com base no que for solicitado para pesquisa bem como a fonte definida via parâmetro.
-    * `obterItem` (Não finalizada) As respostas da API serão retornadas em formato de paginação. (Para teste exeperimente: localhost:8080/api/news/dollar/nytimes.com?page=2)
+#### 🖼️ Visual
+- Um formulário contendo:
+  - Campo de texto livre para a busca.
+  - Dropdown para escolher uma fonte específica.
+  - Botão para enviar a requisição.
+  - Botões de rádio para alternar entre "todas as notícias" e "visualização paginada" (uma por página).
 
-### DTO
-* `NewsItemDTO` contendo algumas propriedades da resposta em formato JSON da API.
-* `NewsPropertiesDTO` (À fazer)
+#### ⚙️ Serviços
+- Ao iniciar o projeto, as notícias são carregadas do arquivo `fakeData.js` (dados simulados da API).
+- Duas formas de buscar notícias:
+  - Com texto e fonte escolhida.
+  - Apenas com texto de busca.
 
-### Services
-* Consiste de serviços essenciais para tornar a aplicação web possível. Utiliza funções para converter dados, solicitar requisições e construir a url da API.
+---
 
-## À fazer:
+### 🧩 Backend
 
-* Features:
-  * Salvar notícias específicas.
+#### 🔧 Configuração
+- CORS foi configurado no Spring Boot para permitir requisições do frontend.
 
-* Bugfixes:
-  * A paginação não deve obter todos os dados de uma vez, deve-se enviar dados apenas quando o usuário executar a ação de troca de página.
- 
-* Misc:
-  * Aprimorar estrutura do código e deminuir redundâncias.
-  * Ajustar CSS.
-  * Garantir acessibilidade (NVDA)
+#### 🌐 Controladores
+- `getNews`: Busca notícias com base no termo pesquisado, de qualquer fonte.
+- `getNewsWithSource`: Busca com base no termo e na fonte específica.
+- `obterItem` (em desenvolvimento): Suporte a paginação na resposta da API.  
+  _Exemplo: `localhost:8080/api/news/dollar/nytimes.com?page=2`_
+
+#### 📦 DTOs
+- `NewsItemDTO`: Mapeia os campos necessários da resposta JSON.
+- `NewsPropertiesDTO`: *(A ser implementado)*
+
+#### 🛎️ Serviços
+Responsáveis por:
+- Criar URLs da API.
+- Fazer requisições externas.
+- Converter os dados.
+
+---
+
+### ✅ A fazer
+
+#### ✨ Funcionalidades
+- Permitir salvar notícias específicas.
+
+#### 🐞 Correções
+- Corrigir a paginação para que os dados só sejam buscados ao mudar de página.
+
+#### 🧹 Diversos
+- Melhorar estrutura e reduzir redundâncias no código.
+- Ajustar o CSS.
+- Garantir acessibilidade (ex.: leitor de tela NVDA).
