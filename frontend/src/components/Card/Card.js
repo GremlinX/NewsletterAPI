@@ -11,31 +11,31 @@ export const Card = ({ image, source, title, text, publish_date }) => {
       minute: "2-digit",
       second: "2-digit",
       hour12: false,
-      timeZone: "America/Sao_Paulo", // Especifique o fuso horário brasileiro, se necessário
+      timeZone: "America/Sao_Paulo",
     };
-
     return new Intl.DateTimeFormat("pt-BR", options).format(date);
   };
 
   return (
-    <app-card>
-      <div className="card__container">
-        <div className="card__imageContainer">
-          <img className="card__image" src={image} alt={title} />
-        </div>
-        <div className="card__body">
-          <h1>{title.toUpperCase()}</h1>
-          <p className="card__text">{text}</p>
-          <p className="card__text">
-            <b>Publish Date: </b>
-            {convertDate(publish_date)}
-          </p>
-          <p className="card__text">
-            <b>Source: </b>
-            <a href={source}>{source}</a>
-          </p>
+    <article className="card">
+      <div className="card__image-wrapper">
+        <img className="card__image" src={image} alt={title} />
+      </div>
+      <div className="card__content">
+        <h2 className="card__title">{title}</h2>
+        <p className="card__text">{text}</p>
+        <div className="card__meta">
+          <span>
+            <strong>Publish Date:</strong> {convertDate(publish_date)}
+          </span>
+          <span>
+            <strong>Source:</strong>{" "}
+            <a href={source} target="_blank" rel="noreferrer">
+              {source}
+            </a>
+          </span>
         </div>
       </div>
-    </app-card>
+    </article>
   );
 };

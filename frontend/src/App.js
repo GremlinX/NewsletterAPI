@@ -14,8 +14,9 @@ const isNullOrUndefined = (variable) => {
 
 function App() {
   const initialValue = {
-    // news: [],
-    news: fakeData.news // Apenas para testes 🟡
+    news: [],
+    // news: fakeData.news, // Apenas para testes 🟡
+    content: []
   };
 
   const [isLoaded, setLoaded] = useState(true);
@@ -31,7 +32,6 @@ function App() {
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = isNullOrUndefined(news.news) ? null : news.news.slice(indexOfFirstPost, indexOfLastPost);
-
   const [viewType, setViewType] = useState('all'); // 'paginated' or 'all'
 
   const handlePagination = (pageNumber) => {
@@ -49,7 +49,7 @@ function App() {
   const handleSearch = async () => {
     try {
       setLoaded(false);
-      const response = await requestNews(query, source);
+      const response = await requestNews(query, source, viewType, currentPage);
       setNews(response ?? []);
     } catch (error) {
       if (error.response) {
@@ -73,65 +73,49 @@ function App() {
           source={source}
           onSelectOption={handleChangeSelectOption}
           viewType={viewType}
-          setViewType={setViewType}
+          onSetViewType={setViewType}
         />
 
         <div className="news">
           {!isLoaded ? ( <LoadingScreen /> ) : viewType === "all" ? 
-          (
-            news.news && news.news.map((v, i) => (
-              <Card
-                key={i}
-                image={v.image}
-                source={v.url}
-                title={v.title}
-                text={v.text}
-                publish_date={v.publish_date}
-              />
-            ))
-          )
-          :
-          (
-            currentPosts && currentPosts.map((v, i) => (
-              <>
-              <Card
-                key={i}
-                image={v.image}
-                source={v.url}
-                title={v.title}
-                text={v.text}
-                publish_date={v.publish_date}
-              />
-              <Paginator
-                length={(news.news ?? []).length}
-                postsPerPage={postsPerPage}
-                handlePagination={handlePagination}
-                currentPage={currentPage}
-              />
-        </>
-            ))
-          )}
+            (
+              news.news && news.news.map((v, i) => (
+                <Card
+                  key={"cardKey_" + i}
+                  image={v.image}
+                  source={v.url}
+                  title={v.title}
+                  text={v.text}
+                  publish_date={v.publish_date}
+                />
+              ))
+            )
+            :
+            (
+              currentPosts && currentPosts.map((v, i) => (
+                <div key={i}>
+                  {/* The JSON return in another format instead of something accessible with "news.news"
+                  it should be news.content */}
+                  <Card
+                    key={"cardPageKey_" + i}
+                    image={v.image}
+                    source={v.url}
+                    title={v.title}
+                    text={v.text}
+                    publish_date={v.publish_date}
+                  />
+                  <Paginator
+                    key={"paginatorKey_" + i}
+                    length={(news.news ?? []).length}
+                    postsPerPage={postsPerPage}
+                    handlePagination={handlePagination}
+                    currentPage={currentPage}
+                  />
+                </div>
+            )))
+          }
         </div>
 
-        
-
-        {/* <div className="news">
-          {isLoaded && news.news.map((v, i) => (
-            <div key={i}>
-              <p>ID: {v.id}</p>
-              <p>Title: {v.title}</p>
-              <p>Text: {v.text}</p>
-              <p>Summary: {v.summary}</p>
-              <p>url: {v.url}</p>
-              <p>Image: {v.image}</p>
-              <p>Publish Date: {v.publish_date}</p>
-              <p>Authors: {v.authors}</p>
-              <p>Language: {v.language}</p>
-              <p>Source Country: {v.source_country}</p>
-              <p>Sentiment: {v.sentiment}</p>
-            </div>
-          ))}
-        </div> */}
         <div className="error">
           {news.status}
           {news.code}

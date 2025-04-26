@@ -1,69 +1,63 @@
-import { useState } from "react";
 import "./Header.css";
 
-export const Header = ({onSetQuery, onClickSearch, selectedOption, onSelectOption, viewType, setViewType}) => {
-
-  
-
-  const handleChangeViewType = (event) => {
-    setViewType(event.target.value);
-  };
+export const Header = ({
+  onSetQuery,
+  onClickSearch,
+  selectedOption,
+  onSelectOption,
+  viewType,
+  onSetViewType,
+}) => {
+  const handleChangeViewType = (event) => onSetViewType(event.target.value);
 
   return (
-    <app-header>
-      <nav className="header__navbar">
-        <div className="header__container">
+    <header className="header">
+      <div className="header__left">
+        <div className="header__search-wrapper">
           <input
-            className="header__input"
             type="text"
-            id="query"
+            className="header__search-input"
             onChange={onSetQuery}
-            placeholder="Search for news"
-          ></input>
-
-          <select
-            className="header__form-select"
-            value={selectedOption}
-            onChange={onSelectOption}
-          >
-            <option defaultValue={""} value={""}>
-              All sources
-            </option>
-            <option value="cnn.com">CNN</option>
-            <option value="gov.br">gov.br</option>
-            <option value="nytimes.com">The New York Times</option>
-          </select>
+            placeholder="🔍 Search for news..."
+          />
         </div>
 
-        <div>
-          <button className="header__btn-primary" onClick={onClickSearch}>
-            Search news
-          </button>
-        </div>
+        <select
+          className="header__select"
+          value={selectedOption}
+          onChange={onSelectOption}
+        >
+          <option value="">All sources</option>
+          <option value="cnn.com">CNN</option>
+          <option value="gov.br">gov.br</option>
+          <option value="nytimes.com">The New York Times</option>
+        </select>
 
-        <div className="header__form-check">
-          <label className="header__form-check__label">
-            <input
-              type="radio"
-              name="viewType"
-              value="all"
-              checked={viewType === 'all'}
-              onChange={handleChangeViewType}
-            />
-            All
-          </label>
-          <label className="header__form-check__label">
-            <input
-              type="radio"
-              name="viewType"
-              value="paginated"
-              checked={viewType === 'paginated'}
-              onChange={handleChangeViewType}
-            />
-            Paginated
-          </label> 
-        </div>
-      </nav>
-    </app-header>
+        <button className="header__btn" onClick={onClickSearch}>
+          Search
+        </button>
+      </div>
+
+      <div className="header__view-toggle">
+        <button
+          className={`header__toggle-btn ${
+            viewType === "all" ? "active" : ""
+          }`}
+          value="all"
+          onClick={handleChangeViewType}
+        >
+          All
+        </button>
+        <button
+          className={`header__toggle-btn ${
+            viewType === "paginated" ? "active" : ""
+          }`}
+          value="paginated"
+          onClick={handleChangeViewType}
+        >
+          Paginated
+        </button>
+      </div>
+    </header>
   );
 };
