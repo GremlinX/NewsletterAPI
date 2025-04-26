@@ -133,3 +133,11 @@ Responsáveis por:
 - Melhorar estrutura e reduzir redundâncias no código.
 - Ajustar o CSS.
 - Garantir acessibilidade (ex.: leitor de tela NVDA).
+
+---
+
+IMAGES:
+![Loading Page](https://github.com/user-attachments/assets/be631294-ea56-490f-9381-33d4fe1cc8f1)
+
+![Displaying News](https://github.com/user-attachments/assets/ce10e3d9-97d0-4db6-8e9a-70ea10691587)
+
